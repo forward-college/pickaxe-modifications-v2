@@ -2,11 +2,11 @@ const params = new URL(document.currentScript.src).searchParams;
 const hub = params.get("hub");
 
 const owner = "leo-reche";
-const repo = "pickaxe-modifications";
+const repo = "pickaxe-modifications-v2";
 const branch = "main";
 
-const apiBase = `https://api.github.com/repos/leo-reche/pickaxe-modifications-v2/contents/${hub}/?ref=${branch}`;
-const fileBase = `https://leo-reche.github.io/pickaxe-modifications-v2/${hub}/`;
+const apiBase = `https://api.github.com/repos/${owner}/${repo}/contents/${hub}?ref=${branch}`;
+const fileBase = `https://${owner}.github.io/${repo}/${hub}/`;
 
 async function getFiles(url) {
   const items = await fetch(url).then(r => r.json());
@@ -14,7 +14,7 @@ async function getFiles(url) {
 
   for (const item of items) {
     if (item.type === "file") {
-      files.push(item.path.replace(`${hub}/files/`, ""));
+      files.push(item.path.replace(`${hub}/`, ""));
     }
 
     if (item.type === "dir") {
