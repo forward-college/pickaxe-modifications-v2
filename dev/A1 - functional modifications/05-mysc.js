@@ -365,7 +365,7 @@ if (iframe && iframe.src === "https://dashboard-app-395477780264.europe-west1.ru
     const nextDataEl = document.getElementById("__NEXT_DATA__");
     if (!nextDataEl) return;
     const nextData = JSON.parse(nextDataEl.textContent);
-    studioUserId = nextData.props?.pageProps?.studioUserId
+    studioUserId = nextData.props?.pageProps?.preloadedUserId
 
     iframe.src = "https://dashboard-app-395477780264.europe-west1.run.app/?userid="+ studioUserId; // <-- new URL here
     document.getElementById("Link Dashboard").href = "https://dashboard-app-395477780264.europe-west1.run.app/?userid="+ studioUserId; 
