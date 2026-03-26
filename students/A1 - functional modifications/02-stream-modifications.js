@@ -1,7 +1,6 @@
   // syncing with database
   function syncConversation(responseId,formId,studioUserId,pastedContent,url){
   if (url.includes("https://core-pickaxe-api.pickaxe.co/stream")) {
-      console.log("here2")
       try {
       const apiUrl = "https://dashboard-backend-395477780264.europe-west1.run.app";
       const payload = { 
@@ -57,7 +56,6 @@ window.fetch = async function(...args) {
 
 
       if (url.includes("https://core-pickaxe-api.pickaxe.co/submit")){   //Massive if{} to get the formid,responseid,lastmessage,documents
-          console.log("here1")
           try {
               // Extract from request body
               formId = JSON.parse(config.body).pickaxeId
