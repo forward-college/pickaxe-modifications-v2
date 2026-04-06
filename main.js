@@ -2,7 +2,7 @@
 const params = new URL(document.currentScript.src).searchParams;
 const hub = params.get("hub");
 
-const owner = "leo-reche";
+const owner = "forward-college";
 const repo = "pickaxe-modifications-v2";
 const fileBase = `https://${owner}.github.io/${repo}/${hub}/`;
 
