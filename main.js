@@ -1,3 +1,4 @@
+//Testing  manifest setup
 const params = new URL(document.currentScript.src).searchParams;
 const hub = params.get("hub");
 
