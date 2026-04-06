@@ -1,0 +1,18 @@
+{
+  "css": [
+    "A1 - functional modifications/styles.css",
+    "B2 - snippets/snippets.css",
+    "C1 - Trust Center Staff/styles.css"
+  ],
+  "js": [
+    "A1 - functional modifications/00-shared-state.js",
+    "A1 - functional modifications/01-math-replacements-fix.js",
+    "A1 - functional modifications/02-stream-modifications.js",
+    "A1 - functional modifications/03-edit-button.js",
+    "A1 - functional modifications/04-stop-button.js",
+    "A1 - functional modifications/05-mysc.js",
+    "B2 - snippets/snippets.js",
+    "C1 - Trust Center Staff/trust_center.js",
+    "C1 - Trust Center Staff/dev_staff_tc_js.js"
+  ]
+}

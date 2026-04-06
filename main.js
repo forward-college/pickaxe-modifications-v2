@@ -5,44 +5,58 @@ const hub = params.get("hub");
 
 const owner = "forward-college";
 const repo = "pickaxe-modifications-v2";
-const branch = "main";
-
-const apiBase = `https://api.github.com/repos/${owner}/${repo}/contents/${hub}?ref=${branch}`;
 const fileBase = `https://${owner}.github.io/${repo}/${hub}/`;
 
-async function getFiles(url) {
-  const items = await fetch(url).then(r => r.json());
-  let files = [];
-
-  for (const item of items) {
-    if (item.type === "file") {
-      files.push(item.path.replace(`${hub}/`, ""));
-    }
-
-    if (item.type === "dir") {
-      const subfiles = await getFiles(item.url);
-      files = files.concat(subfiles);
-    }
-  }
-
-  return files;
+/** Build URL for a path under the hub (handles spaces in folder names). */
+function hubAssetUrl(relativePath) {
+  const normalized = String(relativePath).replace(/\\/g, "/");
+  return (
+    fileBase +
+    normalized
+      .split("/")
+      .map((segment) => encodeURIComponent(segment))
+      .join("/")
+  );
 }
 
-(async () => {
-  const files = await getFiles(apiBase);
-
-  files.forEach(file => {
-    if (file.endsWith(".css")) {
-      const l = document.createElement("link");
-      l.rel = "stylesheet";
-      l.href = fileBase + file;
-      document.head.appendChild(l);
+if (!hub) {
+  console.error(
+    "pickaxe-modifications: missing ?hub= query (e.g. students or staff)"
+  );
+} else {
+  (async () => {
+    const res = await fetch(hubAssetUrl("manifest.json"));
+    if (!res.ok) {
+      console.error(
+        "pickaxe-modifications: manifest.json failed",
+        res.status,
+        res.statusText
+      );
+      return;
     }
 
-    if (file.endsWith(".js")) {
-      const s = document.createElement("script");
-      s.src = fileBase + file;
-      document.body.appendChild(s);
+    let manifest;
+    try {
+      manifest = await res.json();
+    } catch (e) {
+      console.error("pickaxe-modifications: invalid manifest.json", e);
+      return;
     }
-  });
-})();
+
+    const cssList = Array.isArray(manifest.css) ? manifest.css : [];
+    const jsList = Array.isArray(manifest.js) ? manifest.js : [];
+
+    for (const file of cssList) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = hubAssetUrl(file);
+      document.head.appendChild(link);
+    }
+
+    for (const file of jsList) {
+      const script = document.createElement("script");
+      script.src = hubAssetUrl(file);
+      document.body.appendChild(script);
+    }
+  })();
+}
