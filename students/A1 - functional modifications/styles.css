@@ -160,14 +160,8 @@ body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow
     width: 32px !important;       
     margin-left: 0 !important;    
     left: 50%;                    
-    transform: translateX(-50%);  
+   transform: translateX(calc(-50% + 115px));
 }
-
-
-body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > button[aria-label="Scroll to bottom"] {
-    transform: translateX(calc(-50% + 115px)); 
-}
-
 
 
 @media (max-width: 1250px) {
