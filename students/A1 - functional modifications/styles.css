@@ -156,6 +156,10 @@ body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow
   z-index: 1;
 }
 
+body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > button[aria-label="Scroll to bottom"] { 
+   position: absolute;
+}
+
 @media (max-width: 1250px) {
   body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden::before {
     width: 450px;
