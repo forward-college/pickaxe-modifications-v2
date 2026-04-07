@@ -157,6 +157,7 @@ body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow
 }
 
 body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > button[aria-label="Scroll to bottom"] {
+    position: absolute;
     width: 32px !important;       
     margin-left: 0 !important;    
     left: 50%;                    
