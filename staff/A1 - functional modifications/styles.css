@@ -132,7 +132,8 @@ span.text-\[20px\].max-\[1024px\]\:text-\[20px\].max-\[899px\]\:text-\[18px\].mi
 /* ===== Make space for side menu  ====== */
 
 .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden::before,
-.relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > * {
+.relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > *,
+body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > button[aria-label="Scroll to bottom"] {
   transition:
     margin-left 0.22s ease,
     width 0.22s ease,
@@ -154,6 +155,13 @@ body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow
   width: calc(100% - 230px);
   position: relative;
   z-index: 1;
+}
+
+body.fc-sidebar-open .relative.flex.h-full.w-full.flex-col.items-center.overflow-hidden > button[aria-label="Scroll to bottom"] {
+    position: absolute;
+    width: 32px !important;       
+    margin-left: 0 !important;    
+    left: 60%;                    
 }
 
 @media (max-width: 1250px) {
